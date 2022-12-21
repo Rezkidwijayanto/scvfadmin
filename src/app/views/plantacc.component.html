@@ -1,0 +1,149 @@
+<div class="w-full   rounded-xl h-full bg-white ">
+    <div class="w-full px-2 py-2 bg-dtback flex justify-between">
+    <div class="text-white text-md md:text-2xl font-bold">Plant Access Rights</div>
+    <div class=" text-md md:text-2xl font-bold">
+          
+        <button
+        data-bs-toggle="modal" data-bs-target="#plantaccModal"  class="bg-sky-500 hover:bg-sky-400 text-white font-bold py-1   px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button">
+         <i class="bi bi-plus-circle"></i> Add
+        </button>
+    </div>
+    </div>
+    <div class="w-full px-2 py-2  flex justify-between">
+      <div class="py-2 ">
+        Show&nbsp;
+        <select   class=" rounded border-2 bg-gray-50 dark:bg-gray-700 inline text-center"
+            aria-label="Default select example"  [(ngModel)]="pagerow" (change)="pagination.changepagenum.next(true)">
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+        &nbsp;
+        Material
+    </div>
+    </div>
+    <div class="overflow-x-auto border-collapse relative px-3 py-3 px-2 md:px-2">
+        <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400"> 
+            <thead
+                class="text-xs text-center whitespace-nowrap text-white upppercase bg-sky-500 dark:bg-dt dark:text-gray-400">
+                <tr class="whitespace-nowrap">
+                    <th scope="col" class="py-3 px-2 md:px-2  border border-slate-300  "> 
+                        No.
+                    </th>
+                    <th scope="col" class="py-3 px-2 md:px-2  border border-slate-300  ">
+                      Userid
+                  </th> 
+                    <th  scope="col" class="py-3 px-2 md:px-2  border border-slate-300  ">
+                        Plant
+                    </th> 
+                    <th scope="col" class="py-3 px-2 md:px-2  border border-slate-300  ">
+                     Last Update
+                    </th>
+                    <th scope="col" class="py-3 px-2 md:px-2  border border-slate-300  ">
+                     Action
+                    </th> 
+                </tr>
+            </thead>
+            <tbody *ngIf="datain.length > 0" class="text-center " >
+              <tr class="align-middle" *ngFor="let item of datain;let i = index;">
+                <td class="py-3 px-2 md:px-2  border border-slate-300  ">{{i+1}}</td>
+                <td class="py-3 px-2 md:px-2  border border-slate-300  ">{{item.Userid}}</td> 
+                <td class="py-3 px-2 md:px-2  border border-slate-300  ">{{item.Plant}}</td>   
+                <td class="py-3 px-2 md:px-2  border border-slate-300  ">{{item.Ymd8up | date: 'dd/MM/yyyy'}}</td>
+                <td class="py-3 px-2 md:px-2  border border-slate-300  "> 
+                  <button (click)="deldata(item.Userid,item.plant)" class="bg-red-500 hover:bg-red-400 text-white py-1 px-1 text-md rounded "><i
+                    class="bi bi-trash me-1 fs-8"></i>Delete</button>
+                   </td>
+              </tr>
+         
+            </tbody>
+            
+        </table>
+    </div>
+    </div>
+
+       <!-- Modal -->
+<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+id="plantaccModal" tabindex="-1" aria-labelledby="plantaccModalLabel" aria-hidden="true">
+<div class="modal-dialog relative w-auto pointer-events-none">
+  <div
+    class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto   rounded-md outline-none text-current bg-white">
+    <div
+      class="modal-header bg-dtback flex  flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+      <h5 class="text-xs md:text-xl font-medium leading-normal text-white" id="plantaccModalLabel">
+       Add New Plant</h5>
+      <button type="button"
+        class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+        data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body relative p-4">
+      <div class="w-full  h-full ">
+          <div class="mb-2 w-full">
+              <label class="block text-dark text-md font-bold mb-1" for="username">
+               Plant <span class="px-2 text-red">*</span>
+              </label>
+              <select  class="text-gray-700 rounded border-2 bg-gray-50 dark:bg-gray-700 inline text-start"
+              [(ngModel)]="plantacc[0].plant"   >
+               
+              <ng-container *ngIf="plantlist.length>0" >
+                  <option *ngFor="let item of plantlist" value="{{item.plant}}" selected>{{item.plant}}</option> 
+                </ng-container> 
+          </select>
+            </div>
+            
+              <div class="mb-2 w-full">
+                <label class="block text-dark text-md font-bold mb-1" for="username">
+                Userid <span class="px-2 text-red">*</span>
+                </label>
+                
+                <input type="text"  class="rounded w-full py-2 border-2 bg-gray-50 dark:bg-gray-700 inline  px-2 text-md"
+                [(ngModel)]="plantacc[0].userid" 
+                placeholder="Userid" />
+              </div>
+               
+              
+      </div>
+    </div>
+    <div
+      class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+      <button type="button" class="px-6
+        py-2.5
+        bg-orange-500
+        text-white
+        font-medium
+        text-xs
+        leading-tight
+        uppercase
+        rounded
+        shadow-md
+        hover:bg-orange-700 hover:shadow-lg
+        focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0
+        active:bg-orange-800 active:shadow-lg
+        transition
+        duration-150
+        
+        ease-in-out" data-bs-dismiss="modal">Close</button>
+      <button (click)="executedata()" type="button" class="px-6
+    py-2.5
+    bg-dtback
+    text-white
+    font-medium
+    text-xs
+    leading-tight
+    uppercase
+    rounded
+    shadow-md
+    hover:bg-dt hover:shadow-lg
+    focus:bg-dt focus:shadow-lg focus:outline-none focus:ring-0
+    active:bg-dt active:shadow-lg
+    transition
+    duration-150
+    ease-in-out
+    disabled:opacity-25
+    ml-1" [disabled]="plantacc[0].userid=='' || plantacc[0].plant==''  " >Submit</button>
+    </div>
+  </div>
+</div>
+</div>

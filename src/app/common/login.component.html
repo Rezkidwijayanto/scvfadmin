@@ -1,0 +1,138 @@
+ 
+   <!-- Modal toggle -->
+   <div class="w-88 md:w-128 h-full min-h-screen float-right bg-softblack">
+    <div class="flex justify-between items-center px-2">
+    <div class="p-0  inline-block"> 
+      <a class="flex items-center" href=""><img alt="SE Logo" src="assets/img/logos.png" class="w-5 md:w-10 mr-1 inline"> <span class="font-bold text-white font-sans text-xs  md:text-lg tracking-tight uppercase"> SC Vendor Forecast</span>      </a>
+         </div>
+    <div class="p-0 "> 
+      <img src="assets\img\logo\SE_LOGO.svg" 
+      alt="Logo SE Green" class="w-24 md:w-48"  >
+    </div>
+  </div>
+    <div class="p-0 flex justify-center mt-3"> 
+      <img src="https://eajdigitization.se.com/dtportalv2/assets/activity/2/integrated4ir.gif" 
+      alt="Logo SE Green" class="w-96"  >
+    </div>
+    <div class="text-md md:text-4xl text-white font-semibold font-sans text-center w-full uppercase">
+      Welcome to <span class="text-dt">you</span>
+    </div>
+    <div class="text-xs md:text-lg text-white font-semibold font-sans text-center w-full uppercase">
+      Please login to <span class="text-dt">your account</span>
+    </div>
+    <form class="  rounded px-8 pt-6 pb-4">
+        
+      <div class="mb-4">
+        <label class="block text-white text-sm font-bold mb-1" for="username">
+          Username
+        </label>
+        <input #sesaid class="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+      </div>
+      <div class="mb-4">
+        <label class="block text-white text-sm font-bold mb-1" for="password">
+          Password
+        </label>
+        <input #pass class="shadow appearance-none border border-red-500 rounded w-full py-1 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+        <div class="flex items-center justify-between">
+        <p class="text-red-500 text-xs italic">Please choose a password.</p> 
+        <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  class="inline-block align-baseline font-bold text-sm text-bermuda hover:text-blue-800" href="#">
+          Forgot Password?
+        </button> 
+      </div>
+      </div>
+        <div class="text-right w-full">
+        <button   (click)="onLogin()" class=" bg-dtback hover:bg-dthover text-white font-bold py-1   px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+          Sign In  
+        </button>
+      </div>
+       
+    </form>
+    
+  </div>
+  <div class="w-1 h-full min-h-screen float-right bg-dtback bg-opacity-95">
+  </div>
+  <div class="w-1 h-full min-h-screen float-right bg-dtback bg-opacity-90">
+  </div>
+  <div class="w-1 h-full min-h-screen float-right bg-dtback bg-opacity-80">
+  </div>
+  <div class="w-1 h-full min-h-screen float-right bg-dtback bg-opacity-75">
+  </div>
+  <div class="w-1 h-full min-h-screen float-right bg-dtback bg-opacity-70">
+  </div>
+  <div class="w-1 h-full min-h-screen float-right bg-dtback bg-opacity-60">
+  </div>
+
+<!-- Modal -->
+<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog relative w-auto pointer-events-none">
+    <div
+      class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto   rounded-md outline-none text-current" style=" background: rgb(16 33 62 / 95%);">
+      <div
+        class="modal-header bg-dt flex  flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+        <h5 class="text-xl font-medium leading-normal text-white" id="exampleModalLabel">Forget Password</h5>
+        <button type="button"
+          class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+          data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body relative p-4">
+        <div class="w-full  h-full ">
+        
+          <form class="shadow-md w-full ">
+          
+            <div class="mb-4 w-full">
+              <label class="block text-white text-sm font-bold mb-1" for="username">
+                SESAID
+              </label>
+              <input  class="shadow appearance-none border rounded w-full px-2 py-1   text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+            </div>
+            <div class="mb-4 w-full">
+              <label class="block text-white text-sm font-bold mb-1" for="username">
+                E-Mail
+              </label>
+              <input  class="shadow appearance-none border px-2 rounded w-full py-1   text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="mail" placeholder="YOURMAIL@se.com">
+          
+            </div>
+          
+          </form> 
+        </div>  
+      </div>
+      <div
+        class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+        <button type="button" class="px-6
+          py-2.5
+          bg-orange-500
+          text-white
+          font-medium
+          text-xs
+          leading-tight
+          uppercase
+          rounded
+          shadow-md
+          hover:bg-orange-700 hover:shadow-lg
+          focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0
+          active:bg-orange-800 active:shadow-lg
+          transition
+          duration-150
+          ease-in-out" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="px-6
+      py-2.5
+      bg-dt
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      rounded
+      shadow-md
+      hover:bg-dthover hover:shadow-lg
+      focus:bg-dthover focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-dthover active:shadow-lg
+      transition
+      duration-150
+      ease-in-out
+      ml-1">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

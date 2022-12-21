@@ -1,0 +1,102 @@
+<div class="w-full   rounded-xl h-full bg-white ">
+    <div class="w-full px-2 py-2 bg-dtback flex justify-between">
+    <div class="text-white text-md md:text-2xl font-bold">Login Log</div>
+    <div class=" text-md md:text-2xl font-bold">
+        <select  class="text-gray-700 rounded border-2 bg-gray-50 dark:bg-gray-700 inline text-start"
+        [(ngModel)]="plant" (change)="pagination.changepagenum.next(true)"  >
+        
+        <ng-container *ngIf="plantlist.length>0" >
+            <option *ngFor="let item of plantlist" value="{{item.plant}}" selected>{{item.plant}}</option> 
+          </ng-container> 
+    </select>
+    </div>
+    </div>
+    <div class="w-full px-2 py-2  flex justify-between">
+        <div class="py-2 ">
+            Show&nbsp;
+            <select   class=" rounded border-2 bg-gray-50 dark:bg-gray-700 inline text-center"
+                aria-label="Default select example"  [(ngModel)]="pagerow" (change)="pagination.changepagenum.next(true)">
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            &nbsp;
+            Material
+        </div>
+    </div>
+    <div class="overflow-x-auto border-collapse relative px-3 py-3">
+        <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400"> 
+            <thead
+                class="text-xs text-center whitespace-nowrap text-white upppercase bg-sky-500 dark:bg-dt dark:text-gray-400">
+                <tr class="whitespace-nowrap">
+                    <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  "> 
+                        No.
+                    </th>
+                    <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  "> 
+                        Plant
+                    </th>
+                    <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+                        Action
+                    </th>
+                    <th  scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+                       Status
+                    </th>
+                    <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  "> 
+                           Action Date
+                    </th>
+                    <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  "> 
+                         Action By
+                    </th>
+                    <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  "> 
+                        Modify Date
+                    </th>
+                   
+                   
+    
+                </tr>
+            </thead>
+            <tbody *ngIf="datain.length>0" class="text-center " >
+                <tr class="align-middle" *ngFor="let item of datain;let i=index">
+                    <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{(pagination.p-1)*pagerow+i+1}}</td>
+                    <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{plant}}</td>
+                    <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.act}}</td>
+                    <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.desc}}</td> 
+                    <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.ipaddress}}</td>
+                    <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.userid}}</td> 
+                    <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.ymd8up | date:'yyyy-MM-dd'}}</td>  
+                  </tr>
+            </tbody>
+             
+            
+        </table>
+    </div>
+    <div class="flex justify-end w-full py-3">
+        <nav *ngIf="totalpage>1" aria-label="Page navigation example">
+            <ul class="inline-flex -space-x-px">
+                <li *ngIf="pagination.p > 6" (click)="pagination.onClickPage(1,'LX17req')"><a
+                        class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        href="javascript:void(0);">
+                        First Page</a></li>
+                <li (click)="pagination.onClickPage(pagination.p - 1,'LX17req')"><a
+                        class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        href="javascript:void(0);">«
+                        Previous</a></li>
+                <ng-container *ngFor="let item of createRange(totalpage);let i = index;">
+                    <li *ngIf="i< pagination.p +3 && i> pagination.p -6" (click)="pagination.onClickPage(i+1,'LX17req')"><a
+                            [ngClass]="{'active': pagination.p === i+1}"
+                            class="page-link py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                            href="javascript:void(0);">{{i+1}}</a></li>
+                </ng-container>
+                <li (click)="pagination.onClickPage(pagination.p + 1,'LX17req')"><a
+                        class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        href="javascript:void(0);">Next
+                        »</a></li>
+                <li *ngIf="pagination.p < (totalpage -3) " (click)="pagination.onClickPage(totalpage,'LX17req')"><a
+                        class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        href="javascript:void(0);">
+                        Last Page</a></li>
+            </ul>
+        </nav>
+    </div>
+    </div>

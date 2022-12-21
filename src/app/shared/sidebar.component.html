@@ -1,0 +1,45 @@
+<div id="sidebar1" class="group h-full min-h-screen bg-softblack w-16 group-hover:duration-1000 duration-500 ease-in-out ">
+    <div class="w-full hover:cursor-pointer  bg-dtback pl-3 pr-2 py-2 h-14">
+        <img class=" img-circle-header inline " src="assets/logos.png">
+        <span   class="sidebar-text ml-3 font-bold text-white my-2  absolute    text-xl  hidden">SC Vendor Forecast</span>
+    </div>
+    <div routerLink="" routerLinkActive="sidebar-active" [routerLinkActiveOptions]={exact:true}  class="w-full hover:cursor-pointer pl-4 pr-2 py-3 hover:bg-sky-600   ">
+        <span class="text-2xl text-white font-bold">
+            <>
+        </span>
+        <span   class="sidebar-text ml-3 font-bold text-white my-2  absolute    text-xl  hidden">Kinaxis VS SAP</span>
+    </div>
+    <div routerLink="mstvfwaterfall" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}  routerLinkActive="sidebar-active" class="w-full hover:cursor-pointer  pl-4 pr-2 py-3 hover:bg-sky-600 hover:border hover:border-white">
+        <span  class="text-2xl text-white font-bold"><i class="bi bi-file-spreadsheet"></i></span>
+        <span   class="sidebar-text ml-3 font-bold text-white my-2  absolute    text-xl  hidden">Vendor Forecast Data</span>
+    </div> 
+    <div routerLink="mstdemand" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}  routerLinkActive="sidebar-active" class="w-full hover:cursor-pointer  pl-4 pr-2 py-3 hover:bg-sky-600 hover:border hover:border-white">
+        <span  class="text-2xl text-white font-bold"><i class="bi bi-file-earmark-spreadsheet"></i></span>
+        <span   class="sidebar-text ml-3 font-bold text-white my-2  absolute    text-xl  hidden">Demand Data</span>
+    </div> 
+    <div routerLink="mstpo" routerLinkActive="sidebar-active" [routerLinkActiveOptions]={exact:true}  class="w-full hover:cursor-pointer  pl-4 pr-2 py-3 hover:bg-sky-600 hover:border hover:border-white">
+        <span  class="text-2xl text-white font-bold"><i class="bi bi-archive"></i></span>
+        <span   class="sidebar-text ml-3 font-bold text-white my-2  absolute    text-xl  hidden">PO Data</span>
+    </div>
+    <div routerLink="mstplant" routerLinkActive="sidebar-active" [routerLinkActiveOptions]={exact:true}  class="w-full hover:cursor-pointer  pl-4 pr-2 py-3 hover:bg-sky-600 hover:border hover:border-white">
+        <span  class="text-2xl text-white font-bold"><i class="bi bi-building"></i></span>
+        <span   class="sidebar-text ml-3 font-bold text-white my-2  absolute    text-xl  hidden">Master Plant</span>
+    </div>
+
+    <div *ngIf="data.category=='Super Admin'" routerLink="fcacc" routerLinkActive="sidebar-active" [routerLinkActiveOptions]={exact:true}  class="w-full hover:cursor-pointer  pl-4 pr-2 py-3 hover:bg-sky-600 hover:border hover:border-white">
+        <span   class="text-2xl text-white font-bold"><i class="bi bi-person-check-fill"></i></span>
+        <span   class="sidebar-text ml-3 font-bold text-white my-2  absolute    text-xl  hidden">Factory Access</span>
+    </div>
+    <div routerLink="mstusers" routerLinkActive="sidebar-active"   [routerLinkActiveOptions]={exact:true} class="w-full hover:cursor-pointer  pl-4 pr-2 py-3 hover:bg-sky-600 hover:border hover:border-white">
+        <span    class="text-2xl text-white font-bold"><i class="bi bi-people-fill"></i></span>
+        <span   class="sidebar-text ml-3 font-bold text-white my-2  absolute    text-xl  hidden">Master User</span>
+    </div>
+    <div  [routerLinkActiveOptions]={exact:true}  routerLink="loginlog" routerLinkActive="sidebar-active" class="w-full hover:cursor-pointer  pl-4 pr-2 py-3 hover:bg-sky-600 hover:border hover:border-white">
+        <span   class="text-2xl text-white font-bold"><i class="bi bi-file-earmark-zip-fill"></i></span>
+        <span   class="sidebar-text ml-3 font-bold text-white my-2  absolute    text-xl  hidden">Users Log</span>
+    </div>
+    <div  [routerLinkActiveOptions]={exact:true}  routerLink="training" routerLinkActive="sidebar-active" class="w-full hover:cursor-pointer  pl-4 pr-2 py-3 hover:bg-sky-600 hover:border hover:border-white">
+        <span   class="text-2xl text-white font-bold"><i class="bi bi-file-pdf"></i></span>
+        <span   class="sidebar-text ml-3 font-bold text-white my-2  absolute    text-xl  hidden">Training Doc</span>
+    </div>
+</div>

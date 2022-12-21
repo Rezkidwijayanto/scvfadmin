@@ -1,0 +1,311 @@
+<div class="w-full   rounded-xl h-full bg-white ">
+  <div class="w-full px-2 py-2 bg-dtback flex justify-between">
+    <div class="text-white text-md md:text-2xl font-bold">Master Users <i (click)="openhelp()" class="bi bi-info-circle-fill hover:text-softblack cursor-pointer"></i></div>
+    <div class=" text-md md:text-2xl font-bold">
+      <div class="inline px-2">
+        <select  class="text-gray-700 rounded border-2 bg-gray-50 dark:bg-gray-700 inline text-start"
+        [(ngModel)]="plant" (change)="pagination.changepagenum.next(true)"  >
+       
+      <ng-container *ngIf="plantlist.length>0" >
+          <option *ngFor="let item of plantlist" value="{{item.plant}}" selected>{{item.plant}}</option> 
+        </ng-container> 
+    </select>
+     </div>
+    <button
+  (click)="adddata('Insert','')"  class="bg-sky-500 hover:bg-sky-400 text-white font-bold py-1   px-4 rounded focus:outline-none focus:shadow-outline"
+        type="button">
+     <i class="bi bi-plus-circle"></i> Add
+    </button>
+</div>
+  </div>
+  <div class="w-full px-2 py-2  flex justify-between">
+    <div class="py-2 ">
+      Show&nbsp;
+      <select class=" rounded border-2 bg-gray-50 dark:bg-gray-700 inline text-center" [(ngModel)]="pagerow"
+        (change)="pagination.changepagenum.next(true)">
+        <option value="10" selected>10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      &nbsp;
+      Material
+    </div>
+  </div>
+  <div class="overflow-x-auto border-collapse relative px-3 py-3">
+    <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400">
+      <thead
+        class="text-xs text-center whitespace-nowrap text-white upppercase bg-sky-500 dark:bg-dt dark:text-gray-400">
+        <tr class="whitespace-nowrap">
+          <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+            No.
+          </th>
+          <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+            Userid
+          </th>
+          <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+            Name
+          </th>
+          <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+            Plant
+          </th>
+          <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+            Position
+          </th>
+          <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+            Level
+          </th>
+          <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+            Mail
+          </th>
+          <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+            Modify Date
+          </th>
+          <th scope="col" class="py-3 px-2 md:px-2 border border-slate-300  ">
+            Action
+          </th>
+
+        </tr>
+      </thead>
+      <tbody *ngIf="datain.length > 0" class="text-center ">
+        <tr class="align-middle" *ngFor="let item of datain;let i = index;">
+          <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{i+1}}</td>
+          <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.Userid}}</td>
+          <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.Name}}</td>
+          <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.Plant}}</td>
+          <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.Level}}</td>
+          <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.Category}}</td>
+          <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.Mail}}</td>
+          <td class="py-3 px-2 md:px-2 border border-slate-300  ">{{item.Ymd8up | date: 'dd/MM/yyyy'}}</td>
+          <td class="py-3 px-1 md:px-1 border border-slate-300  ">
+            <button (click)="deldata(item.Userid)" class="bg-red-500 hover:bg-red-400 text-white py-1 px-1 text-md rounded "><i
+                class="bi bi-trash me-1 fs-8"></i>Delete</button>
+                <button (click)="adddata('Edit',item)"
+              class="bg-green-500 hover:bg-green-400 mx-2 text-white py-1 px-1 text-md rounded"><i class=" fs-8 bi bi-pencil-square me-1"></i>Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex justify-end w-full py-3">
+    <nav *ngIf="totalpage>1" aria-label="Page navigation example">
+        <ul class="inline-flex -space-x-px">
+            <li *ngIf="pagination.p > 6" (click)="pagination.onClickPage(1,'LX17req')"><a
+                    class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    href="javascript:void(0);">
+                    First Page</a></li>
+            <li (click)="pagination.onClickPage(pagination.p - 1,'LX17req')"><a
+                    class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    href="javascript:void(0);">«
+                    Previous</a></li>
+            <ng-container *ngFor="let item of createRange(totalpage);let i = index;">
+                <li *ngIf="i< pagination.p +3 && i> pagination.p -6" (click)="pagination.onClickPage(i+1,'LX17req')"><a
+                        [ngClass]="{'active': pagination.p === i+1}"
+                        class="page-link py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        href="javascript:void(0);">{{i+1}}</a></li>
+            </ng-container>
+            <li (click)="pagination.onClickPage(pagination.p + 1,'LX17req')"><a
+                    class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    href="javascript:void(0);">Next
+                    »</a></li>
+            <li *ngIf="pagination.p < (totalpage -3) " (click)="pagination.onClickPage(totalpage,'LX17req')"><a
+                    class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    href="javascript:void(0);">
+                    Last Page</a></li>
+        </ul>
+    </nav>
+</div>
+</div>
+
+       <!-- Modal -->
+       <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+       id="addusersModal" tabindex="-1" aria-labelledby="addusersModalLabel" aria-hidden="true">
+       <div class="modal-dialog relative w-auto pointer-events-none">
+         <div
+           class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto   rounded-md outline-none text-current bg-white">
+           <div
+             class="modal-header bg-dtback flex  flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+             <h5 class="text-xs md:text-xl font-medium leading-normal text-white" id="addusersModalLabel">
+              Add New User</h5>
+             <button type="button"
+               class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+               data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body relative p-4">
+             <div class="w-full  h-full ">
+                 <div class="mb-2 w-full">
+                     <label class="block text-dark text-md font-bold mb-1" for="username">
+                      Plant <span class="px-2 text-red">*</span>
+                     </label>
+                     <select  class="text-gray-700 rounded border-2 bg-gray-50 dark:bg-gray-700 inline text-start"
+                     [(ngModel)]="addusers[0].plant"  >
+                     
+                     <ng-container *ngIf="plantlist.length>0" >
+                         <option *ngFor="let item of plantlist" value="{{item.plant}}" selected>{{item.plant}}</option> 
+                       </ng-container> 
+                  </select>
+                   </div> 
+                     <div class="mb-2 w-full">
+                       <label class="block text-dark text-md font-bold mb-1" for="username">
+                       Userid <span class="px-2 text-red">*</span>
+                       </label>
+                       <input type="text" [disabled]="type=='Edit'"  class="rounded w-full py-2 border-2 bg-gray-50 dark:bg-gray-700 inline  px-2 text-md"
+                       [(ngModel)]="addusers[0].userid" 
+                       placeholder="Userid" />
+                     </div>
+                     <div class="mb-2 w-full">
+                      <label class="block text-dark text-md font-bold mb-1" for="username">
+                      Name <span class="px-2 text-red">*</span>
+                      </label>
+                      <input type="text"  class="rounded w-full py-2 border-2 bg-gray-50 dark:bg-gray-700 inline  px-2 text-md"
+                      [(ngModel)]="addusers[0].name" 
+                      placeholder="Full Name" />
+                    </div>
+                    <div class="mb-2 w-full">
+                      <label class="block text-dark text-md font-bold mb-1" for="username">
+                      Position <span class="px-2 text-red">*</span>
+                      </label>
+                      <select  class="text-gray-700 rounded border-2 bg-gray-50 dark:bg-gray-700 inline text-start"
+                     [(ngModel)]="addusers[0].level"  >
+                     <option *ngFor="let item of position" value="{{item.Title}}"> {{item.Title}}</option>
+                      
+                  </select>
+                    </div>
+                    <div class="mb-2 w-full">
+                      <label class="block text-dark text-md font-bold mb-1" for="username">
+                      Level <span class="px-2 text-red">*</span>
+                      </label>
+                      <select  class="text-gray-700 rounded border-2 bg-gray-50 dark:bg-gray-700 inline text-start"
+                     [(ngModel)]="addusers[0].category"  >
+                     <option *ngFor="let item of level" value="{{item.Title}}"> {{item.Title}}</option> 
+                  </select>
+                    </div> 
+                    <div class="mb-2 w-full">
+                      <label class="block text-dark text-md font-bold mb-1" for="username">
+                      E-Mail <span class="px-2 text-red">*</span>
+                      </label>
+                      <input type="text"  class="rounded w-full py-2 border-2 bg-gray-50 dark:bg-gray-700 inline  px-2 text-md"
+                      [(ngModel)]="addusers[0].mail" 
+                      placeholder="Userid" />
+                    </div>
+                     
+             </div>
+           </div>
+           <div
+             class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+             <button type="button" class="px-6
+               py-2.5
+               bg-orange-500
+               text-white
+               font-medium
+               text-xs
+               leading-tight
+               uppercase
+               rounded
+               shadow-md
+               hover:bg-orange-700 hover:shadow-lg
+               focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0
+               active:bg-orange-800 active:shadow-lg
+               transition
+               duration-150
+               
+               ease-in-out" data-bs-dismiss="modal">Close</button>
+             <button (click)="executedata(type)" type="button" class="px-6
+           py-2.5
+           bg-dtback
+           text-white
+           font-medium
+           text-xs
+           leading-tight
+           uppercase
+           rounded
+           shadow-md
+           hover:bg-dt hover:shadow-lg
+           focus:bg-dt focus:shadow-lg focus:outline-none focus:ring-0
+           active:bg-dt active:shadow-lg
+           transition
+           duration-150
+           ease-in-out
+           disabled:opacity-25
+           ml-1" [disabled]="addusers[0].userid=='' || addusers[0].plant==''  " >Submit</button>
+           </div>
+         </div>
+       </div>
+       </div>
+
+
+    <!-- Modal Help Start-->
+    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+    id="HelpModal" tabindex="-1" aria-labelledby="HelpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg relative w-auto pointer-events-none">
+      <div
+        class="modal-content  border-none shadow-lg relative flex flex-col w-full pointer-events-auto   rounded-md outline-none text-current bg-white">
+      
+        <div
+          class="modal-header bg-dtback flex  flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+          <h5 class="text-xs md:text-xl font-medium leading-normal text-white" id="uploagapcycleModalLabel">
+          How to upload files</h5>
+          <button type="button"
+            class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body relative py-2 px-4">
+          
+          <div class="w-full  h-auto overflow-y">
+            
+            <div class="mb-3">
+            <b> There are several steps to Insert, Update Or Delete.
+            </b> 
+          </div>
+            <ul>
+              <li class="w-90 mb-2">1. For Insert data you can click this button </li>
+              <div class="w-90 mb-2">
+                <img src="assets/faqplant/1.JPG" class="w-100">
+              </div> 
+              <li class="w-90 mb-2">2. The pop up screen will shown like image below. Please follow the instruction below !</li>
+              <div class="w-90 mb-2">
+                <img src="assets/faqplant/6.JPG" class="w-100">
+              </div> 
+              <li class="w-90 mb-2">3. You can edit by click this button </li>
+              <div class="w-90 mb-2">
+                <img src="assets/faqplant/8.JPG" class="w-100">
+              </div> 
+              <li class="w-90 mb-2">4. The same screen shown as step number 2, but here you can't change the plant and the userid ! </li>
+              <div class="w-90 mb-2">
+                <img src="assets/faqplant/7.JPG" class="w-100">
+              </div>
+              <li class="w-90 mb-2">5. If you want to delete the wrong input user, you can use this button ! </li>
+              <div class="w-90 mb-2">
+                <img src="assets/faqplant/9.JPG" class="w-100">
+              </div>
+              <li class="w-90 mb-2">Note : Don't delete wrong user or user still active, it can make error on the system. if needed, please contact DT Teams. </li>
+            
+            </ul>
+           
+               
+          </div>
+        </div>
+        <div
+          class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-center p-4 border-t border-gray-200 rounded-b-md">
+          <button type="button" class="px-6
+            py-2.5
+            bg-orange-500
+            text-white
+            font-medium
+            text-xs
+            leading-tight
+            uppercase
+            rounded
+            shadow-md
+            hover:bg-orange-700 hover:shadow-lg
+            focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0
+            active:bg-orange-800 active:shadow-lg
+            transition
+            duration-150
+            
+            ease-in-out" data-bs-dismiss="modal">Close</button> 
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- Modal Help End -->
